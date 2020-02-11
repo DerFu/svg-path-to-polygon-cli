@@ -12,5 +12,4 @@ Run `svgp2p ./example.svg`
 
 ## Roadmap
 
-[ ] select specific path per cli
-[ ] create npm package
+[ ] select specific path per clio
