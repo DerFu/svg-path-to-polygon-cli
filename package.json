@@ -1,0 +1,19 @@
+{
+  "name": "svg-path-to-polygon-cli",
+  "version": "1.0.0",
+  "description": "Converts SVG path to polygon. Handy for animations.",
+  "main": "index.js",
+  "author": "Daniel Weber <dw@funami.de>",
+  "license": "MIT",
+  "bin": {
+    "svgp2p": "./bin/svgp2p.js",
+    "svg-path-to-polygon": "./bin/svgp2p.js"
+  },
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "clipboardy": "^2.1.0",
+    "meow": "^6.0.0",
+    "svg-path-to-polygons": "^0.1.0",
+    "xml2js": "^0.4.23"
+  }
+}
