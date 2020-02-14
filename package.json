@@ -1,6 +1,6 @@
 {
   "name": "svg-path-to-polygon-cli",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Converts SVG path to polygon. Handy for animations.",
   "main": "index.js",
   "author": "Daniel Weber <dw@funami.de>",
