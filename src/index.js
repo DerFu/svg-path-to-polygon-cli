@@ -18,6 +18,7 @@ const cli = meow(
 
 	Options
 	  --file, -f  File
+	  --string, -s  Path
 
 	Examples
 	  $ svgp2p -f ./example.svg
@@ -27,21 +28,36 @@ const cli = meow(
       file: {
         type: "string",
         alias: "f"
+      },
+      string: {
+        type: "string",
+        alias: "s"
       }
     }
   }
 );
 
-fs.readFile(cli.flags.file, "utf-8", function(error, text) {
-  if (error) throw error;
-  parser.parseString(text, (err, result) => {
-    if (err) throw err;
-
-    const points = pathDataToPolys(result["svg"]["path"][0].$.d, {
-      tolerance: 1,
-      decimals: 0
-    });
-    clipboardy.writeSync(points.toString());
-    log(chalk.green("Polygons copied to clipboard"));
+if (cli.flags.string) {
+  const points = pathDataToPolys(cli.flags.string, {
+    tolerance: 1,
+    decimals: 0
   });
-});
+  clipboardy.writeSync(points.toString());
+  log(chalk.green("Polygons copied to clipboard"));
+  log(chalk.blue(points.toString()));
+}
+
+if (cli.flags.file) {
+  fs.readFile(cli.flags.file, "utf-8", (error, text) => {
+    if (error) throw error;
+    parser.parseString(text, (err, result) => {
+      if (err) throw err;
+      const points = pathDataToPolys(result["svg"]["path"][0].$.d, {
+        tolerance: 1,
+        decimals: 1
+      });
+      clipboardy.writeSync(points.toString());
+      log(chalk.green("Polygons copied to clipboard"));
+    });
+  });
+}
